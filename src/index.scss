@@ -1,0 +1,302 @@
+/* Обнуление */
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+ol,
+ul,
+menu {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+blockquote,
+q {
+  quotes: none;
+}
+
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+.map {
+
+  width: 100vw;
+  height: 100vh;
+  background-color: antiquewhite;
+}
+
+.map div {
+  width: 100%;
+  height: 100%;
+}
+
+.aside {
+  position: absolute;
+  z-index: 1;
+  width: 30%;
+  background-color: white;
+  transform: translateX(-100%);
+  transition: transform linear .8s .5s;
+
+  &.open {
+    transform: translateX(0%);
+    transition: transform linear .8s .5s;
+  }
+
+  &__inner {
+    height: 100vh;
+    padding: 10px;
+    overflow: auto;
+  }
+
+  &__close {
+    position: absolute;
+    z-index: 1;
+    top: 20px;
+    right: -40px;
+
+    width: 36px;
+    height: 33px;
+    transition-duration: 1s;
+    cursor: pointer;
+    padding: 3px;
+    background-color: rgb(18, 142, 22);
+    border-radius: 5px;
+
+    & span {
+      height: 3px;
+      width: 30px;
+      background-color: white;
+      border-radius: 20px;
+      position: absolute;
+      top: 47%;
+      transition-duration: .25s;
+      transition-delay: .25s;
+    }
+
+    & span:before {
+      left: 0;
+      position: absolute;
+      top: -8px;
+      height: 3px;
+      width: 30px;
+      background-color: white;
+      content: "";
+      border-radius: 20px;
+      transition-duration: .25s;
+      transition: transform .25s, top .25s .25s;
+    }
+
+    & span:after {
+      left: 0;
+      position: absolute;
+      top: 8px;
+      height: 3px;
+      width: 30px;
+      background-color: white;
+      content: "";
+      border-radius: 20px;
+      transition-duration: .25s;
+      transition: transform .25s, top .25s .25s;
+    }
+
+    &.open span {
+      transition-duration: 0.1s;
+      transition-delay: .25s;
+      background: transparent;
+    }
+
+    &.open span:before {
+      transition: top .25s, transform .25s .25s;
+      top: 0px;
+      transform: rotateZ(-45deg);
+    }
+
+    &.open span:after {
+      transition: top 0.4s, transform .25s .25s;
+      top: 0px;
+      transform: rotateZ(45deg);
+    }
+  }
+
+  &__btn {
+    display: inline-block;
+    cursor: pointer;
+    font-weight: 600;
+    color: rgb(18, 142, 22);
+    margin: 7px auto 0px 3px;
+  }
+
+  &__district,
+  &__admin-district,
+  &__map-mod,
+  &__filter {
+    margin-top: 15px;
+
+    &__inner {
+      margin-top: 10px;
+      width: 100%;
+      height: 150px;
+      overflow: auto;
+    }
+
+    &__item {
+      margin-top: 5px;
+      cursor: pointer;
+    }
+
+    &__item_input {
+      cursor: pointer;
+    }
+
+    &__title {
+      font-weight: 600;
+
+    }
+  }
+
+  &__filter {
+    &__title {
+      font-size: 18px;
+      margin-top: 15px;
+    }
+
+  }
+
+  &__map-mod {
+    &__inner {
+      height: 100px;
+    }
+  }
+
+  &__form-slider {
+    margin-top: 20px;
+  }
+
+  &__form-upload {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+}
+
+.button_green {
+  border: none;
+  border-radius: 7px;
+  padding: 10px;
+  margin: 10px auto;
+  background-color: rgb(18, 142, 22);
+  color: white;
+  transition: transform linear .3s;
+  cursor: pointer;
+
+}
+
+input[type='submit'] {
+  font-weight: 600;
+}
