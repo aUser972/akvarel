@@ -10,18 +10,24 @@ export const Upload = () => {
     <form className="aside__form-upload">
       {
         UPLOAD_TYPE.map(type =>
-          <p
-            className="aside__form-upload__item"
+          <div
+            className='aside__form-upload__radio'
             key={type.id}
           >
             <input
-              className="aside__form-upload__radio"
+              className="aside__form-upload__radio_input"
+              id={type.name}
               type="radio"
-              key={type.id}
               value={type.name}
+              name='upload'
             />
-            {type.name}
-          </p>
+            <label
+              htmlFor={type.name}
+            >
+              {type.name}
+            </label>
+          </div>
+
         )
       }
       <input

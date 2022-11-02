@@ -1,10 +1,7 @@
 import { YMaps, Map, GeoObject } from "@pbe/react-yandex-maps"
-import mo from '../../mo.json'
+
 
 export const Maps = () => {
-  const kievskiy = mo.features.filter(item =>
-    item.properties.NAME === 'Киевский'
-  )
 
   const points = [
     {
@@ -72,17 +69,18 @@ export const Maps = () => {
       id: 'city--8026980e'
     }
   ]
-  console.log(kievskiy[0].geometry.coordinates)
+
   return (
     <div className="map">
       <YMaps>
         <div>
           <Map width='100%' height='100%' defaultState={{ center: [55.75, 37.57], zoom: 10 }} >
 
-            <GeoObject
+            {/* <GeoObject
               geometry={{
                 type: 'Polygon',
                 coordinates: kievskiy[0].geometry.coordinates,
+                fillRule: 'nonZero',
               }}
               properties={{
                 balloonContent: "Многоугольник"
@@ -97,7 +95,7 @@ export const Maps = () => {
                 strokeWidth: 2
 
               }}
-            />
+            /> */}
             {
               points.map(point =>
                 <GeoObject

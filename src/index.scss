@@ -228,11 +228,11 @@ code {
     cursor: pointer;
     font-weight: 600;
     color: rgb(18, 142, 22);
-    margin: 7px auto 0px 3px;
+    margin: 0px auto 0px 3px;
   }
 
-  &__district,
-  &__admin-district,
+  &__areaFilter,
+  &__districtsFilter,
   &__map-mod,
   &__filter {
     margin-top: 15px;
@@ -240,13 +240,13 @@ code {
     &__inner {
       margin-top: 10px;
       width: 100%;
-      height: 150px;
+      max-height: 155px;
       overflow: auto;
     }
 
     &__item {
-      margin-top: 5px;
       cursor: pointer;
+      margin-top: 5px;
     }
 
     &__item_input {

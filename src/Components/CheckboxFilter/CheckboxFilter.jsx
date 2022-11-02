@@ -1,58 +1,74 @@
-import { useReducer } from "react"
+export const CheckboxFilter = ({ DATA, selector, title, setActiveAreaFilter }) => {
 
-function reducer(state, action) {
-  switch (action.type) {
-    case 'shortData':
-      return {
-        data: state.data.filter(item => item.id <= 5),
-        fullMode: true
-      }
-    case 'fullData':
-      return {
-        data: action.payload,
-        fullMode: false
-      }
-
-    default:
-      throw new Error()
-  }
-}
-
-export const CheckboxFilter = ({ DATA, selector, title }) => {
-  const VARIABLES = {
-    btnHidden: 'Свернуть',
-    btnVisible: 'Показать все'
+  //При клике на текст возле инпута провоцируется клик по инпуту
+  const handlerClickItem = (event) => {
+    if (event.target.nodeName === 'DIV') {
+      event.target.children[0].click()
+    }
   }
 
-  const [state, dispatch] = useReducer(reducer, { data: DATA.filter(item => item.id <= 4), fullMode: true })
+  // Получение районов из данных
+  const getArea = name => {
+    const district = DATA.filter(district => district.name === name)
+    return district[0].area
+  }
+
+  // Обработчик клика по фильтрам
+  const handlerChange = (event) => {
+    const item = event.target
+    const allInputs = document.querySelectorAll(`.${item.className}`)
+    // Выбор всех эелементов при клике на 'Выбрать все'
+    if (item.defaultValue === 'Выбрать все') {
+      allInputs.forEach(input => {
+        input.checked = item.checked ? true : false
+      })
+    }
+
+    // Добавление районов при выборе административного округа
+    if (item.name === 'districtsFilter') {
+      // const all = document.querySelector(`.${item.className}`)
+      const area = [{ id: 0, name: 'Выбрать все' }]
+      allInputs.forEach(input => {
+        if (input.checked && input.defaultValue !== 'Выбрать все') area.push(...getArea(input.defaultValue))
+      })
+      setActiveAreaFilter(area)
+    }
+  }
   return (
+    // Раздел фильтра
     <div className={`aside__${selector}`}>
+      {/* Заголовок раздела фильтра */}
       <label className="aside__filter__title">{title}</label>
+
+      {/* Оболочка раздела фильтра */}
       <div
         className={`aside__${selector}__inner`}
         name={selector}
+        onChange={handlerChange}
       >
         {
-          state.data.map(item =>
-            <div
-              className={`aside__${selector}__item`}
-              key={item.id}
-            >
-              <input
-                className={`aside__${selector}__item_input`}
-                type="checkbox"
+          // Перебор массива с данными по фильтрам
+          // Если административные округа не выбраны выводим "Выберите административный округ"
+          DATA.length === 0 ? <p style={{ fontSize: '12px' }}>Выберите административный округ</p> :
+            DATA.map(item =>
+              <div
+                className={`aside__${selector}__item`}
                 key={item.id}
-                name={selector}
-                value={item.name}
-              />
-              {item.name}
-            </div>)
+                onClick={handlerClickItem}
+              >
+                <input
+                  className={`aside__${selector}__item_input`}
+                  type="checkbox"
+                  key={item.id}
+                  name={selector}
+                  value={item.name}
+
+                />
+                {item.name}
+              </div>
+            )
         }
       </div>
-      {
-        state.data.length >= 5 ? state.fullMode ? (<div className="aside__btn" onClick={() => dispatch({ type: 'fullData', payload: DATA })}>{VARIABLES.btnVisible}</div>) : (<div className="aside__btn" onClick={() => dispatch({ type: 'shortData' })}>{VARIABLES.btnHidden}</div>) : <></>
-      }
-
     </div>
   )
 }
