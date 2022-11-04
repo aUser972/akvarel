@@ -516,7 +516,6 @@ export const Aside = () => {
   }
   // Подготовка результатов фильтров
   const dataPrepair = (event) => {
-
     setDataFilter({
       ...dataFilter,
       properties: {
@@ -541,6 +540,22 @@ export const Aside = () => {
   const handlerSubmit = (event) => {
     event.preventDefault()
     console.log(dataFilter)
+
+    fetch("http://127.0.0.1:8000", {
+      method: "POST",
+      headers: {
+        'Accept': 'application/json',
+                  'Content-Type': ' application/json',
+                  'X-API-SERVER': '85499f9f'
+              },
+      body: JSON.stringify(dataFilter)
+    })
+    .then(response =>
+      response.json()
+    )
+    .then(data =>
+    console.log(data)
+    );
   }
 
   return (
