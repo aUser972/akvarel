@@ -72,8 +72,8 @@ export const Maps = () => {
 
   return (
     <div className="map">
-      <YMaps>
-        <div>
+      <YMaps className="map__ymaps">
+        <div >
           <Map width='100%' height='100%' defaultState={{ center: [55.75, 37.57], zoom: 10 }} >
 
             {/* <GeoObject

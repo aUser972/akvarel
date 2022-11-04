@@ -1,5 +1,4 @@
 export const Slider = () => {
-
   return (
     <form className="aside__form-slider">
       <input

@@ -6,9 +6,9 @@ function App() {
   return (
     <>
       {/* Компонент бокового меню */}
-      <Aside></Aside>
+      <Aside />
       {/* Компонент карты */}
-      <Maps></Maps>
+      <Maps />
     </>
   );
 }
