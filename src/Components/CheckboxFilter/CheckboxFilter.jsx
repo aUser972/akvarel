@@ -27,7 +27,7 @@ export const CheckboxFilter = ({ DATA, selector, title, setActiveAreaFilter }) =
     // Добавление районов при выборе административного округа
     if (item.name === 'districtsFilter') {
       // const all = document.querySelector(`.${item.className}`)
-      const area = [{ id: 0, name: 'Выбрать все' }]
+      const area = [DATA[0]]
       allInputs.forEach(input => {
         if (input.checked && input.defaultValue !== 'Выбрать все') area.push(...getArea(input.defaultValue))
       })
@@ -38,7 +38,7 @@ export const CheckboxFilter = ({ DATA, selector, title, setActiveAreaFilter }) =
     // Раздел фильтра
     <div className={`aside__${selector}`}>
       {/* Заголовок раздела фильтра */}
-      <label className="aside__filter__title">{title}</label>
+      <h2 className="aside__filter__title">{title}</h2>
 
       {/* Оболочка раздела фильтра */}
       <div
@@ -49,7 +49,7 @@ export const CheckboxFilter = ({ DATA, selector, title, setActiveAreaFilter }) =
         {
           // Перебор массива с данными по фильтрам
           // Если административные округа не выбраны выводим "Выберите административный округ"
-          DATA.length === 0 ? <p style={{ fontSize: '12px' }}>Выберите административный округ</p> :
+          DATA.length === 1 ? <p style={{ fontSize: '12px' }}>Выберите административный округ</p> :
             DATA.map(item =>
               <div
                 className={`aside__${selector}__item`}

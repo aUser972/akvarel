@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { CheckboxFilter } from "../CheckboxFilter/CheckboxFilter";
 import { Slider } from "../Slider/Slider";
 import { Upload } from "../Upload/Upload";
+import { Context } from "../context";
 
 export const Aside = () => {
   // Скелет для формирования отправки данных на бэк
@@ -56,11 +57,16 @@ export const Aside = () => {
     }
   }
   const [dataFilter, setDataFilter] = useState(dataStructure)
-  const [activeAreaFilter, setActiveAreaFilter] = useState([])
+  const { setData } = useContext(Context)
+  const [activeAreaFilter, setActiveAreaFilter] = useState([{ id: 0, name: 'Выбрать все' }])
   // Данные фильтров
   const VARIABLES = {
     title: 'Название нашего крутого сервиса',
-    submitValue: 'Рассчитать'
+    submitValue: 'Рассчитать',
+    titleFilter: 'Фильтры',
+    titleDistrictsFilter: 'Административные округа',
+    titleAreaFilter: 'Районы',
+    titleMapMode: 'Режим отображения'
   };
   const DISTRICS_FILTER = [{
     id: 0,
@@ -571,6 +577,10 @@ export const Aside = () => {
         placeTypeFilter: {
           ...dataFilter.properties.placeTypeFilter,
           description: getResultFilter('.aside__filter__item_input')
+        },
+        maxConsumerIndexFilter: {
+          ...dataFilter.properties.maxConsumerIndexFilter,
+          description: ''
         }
       }
     })
@@ -594,7 +604,7 @@ export const Aside = () => {
         response.json()
       )
       .then(data =>
-        console.log(data)
+        setData(data)
       );
   }
 
@@ -609,10 +619,10 @@ export const Aside = () => {
             selector - класс, title - заголовок фильтра, dataFilter - для сохранения данных при выборе значения фильтра,
             setDataFilter - для изменения состояния данных при выборе значения фильтров
         */}
-          <CheckboxFilter DATA={DISTRICS_FILTER} selector="districtsFilter" title='Административные округа' setActiveAreaFilter={setActiveAreaFilter} />
-          <CheckboxFilter DATA={activeAreaFilter} selector="areaFilter" title='Районы' setActiveAreaFilter={setActiveAreaFilter} />
-          <CheckboxFilter DATA={FILTER} selector="filter" title='Фильтры' setActiveAreaFilter={setActiveAreaFilter} />
-          <CheckboxFilter DATA={MODS} selector="map-mod" title='Режим отображения' setActiveAreaFilter={setActiveAreaFilter} />
+          <CheckboxFilter DATA={DISTRICS_FILTER} selector="districtsFilter" title={VARIABLES.titleDistrictsFilter} setActiveAreaFilter={setActiveAreaFilter} />
+          <CheckboxFilter DATA={activeAreaFilter} selector="areaFilter" title={VARIABLES.titleAreaFilter} setActiveAreaFilter={setActiveAreaFilter} />
+          <CheckboxFilter DATA={FILTER} selector="filter" title={VARIABLES.titleFilter} setActiveAreaFilter={setActiveAreaFilter} />
+          <CheckboxFilter DATA={MODS} selector="map-mod" title={VARIABLES.titleMapMode} setActiveAreaFilter={setActiveAreaFilter} />
           {/* Отправка формы фильтров */}
           <input
             className="aside__form__submit button_green"

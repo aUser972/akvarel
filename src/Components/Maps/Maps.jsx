@@ -1,6 +1,4 @@
 import { YMaps, Map, GeoObject } from "@pbe/react-yandex-maps"
-
-
 export const Maps = () => {
 
   const points = [

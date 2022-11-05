@@ -259,7 +259,8 @@ code {
     }
   }
 
-  &__filter {
+  &__filter,
+  &__form-consumer {
     &__title {
       font-size: 18px;
       margin-top: 15px;
@@ -273,8 +274,16 @@ code {
     }
   }
 
-  &__form-slider {
+  &__form-consumer {
     margin-top: 20px;
+
+    &__inputs {
+      margin-top: 10px;
+
+      &__input {
+        width: 50px;
+      }
+    }
   }
 
   &__form-upload {

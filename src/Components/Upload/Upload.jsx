@@ -35,7 +35,6 @@ export const Upload = ({ POINTS }) => {
           format: [7, 6]
         });
         pdf.addImage(prepairURL(POINTS), 'JPEG', 0, 0);
-        // pdf.output('dataurlnewwindow');
         pdf.save("download.pdf");
       })
   }

@@ -1,14 +1,21 @@
+import { useState } from "react";
 import { Aside } from "./Components/Aside/Aside";
+import { Context } from "./Components/context";
 import { Maps } from "./Components/Maps/Maps";
 
 
+
 function App() {
+  const [data, setData] = useState()
+
   return (
     <>
-      {/* Компонент бокового меню */}
-      <Aside />
-      {/* Компонент карты */}
-      <Maps />
+      <Context.Provider value={{ data, setData }}>
+        {/* Компонент бокового меню */}
+        <Aside />
+        {/* Компонент карты */}
+        <Maps />
+      </Context.Provider>
     </>
   );
 }
