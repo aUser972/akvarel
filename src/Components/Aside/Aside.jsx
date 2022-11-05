@@ -3,6 +3,7 @@ import { CheckboxFilter } from "../CheckboxFilter/CheckboxFilter";
 import { Slider } from "../Slider/Slider";
 import { Upload } from "../Upload/Upload";
 import { Context } from "../context";
+import { Mode } from "../Mode/Mode";
 
 export const Aside = () => {
   // Скелет для формирования отправки данных на бэк
@@ -491,10 +492,16 @@ export const Aside = () => {
     }]
   }]
   const MODS = [
-    { id: 0, name: 'Выбрать все' },
-    { id: 1, name: 'Точки' },
-    { id: 2, name: 'Секторы' },
-    { id: 3, name: 'Тепловая карта' }
+    {
+      id: 1,
+      name: 'Точки',
+      value: 'Model1'
+    },
+    {
+      id: 2,
+      name: 'Тепловая карта',
+      value: 'Model2'
+    }
   ]
   const FILTER = [
     { id: 1, name: 'Учитывать киоски' },
@@ -622,7 +629,7 @@ export const Aside = () => {
           <CheckboxFilter DATA={DISTRICS_FILTER} selector="districtsFilter" title={VARIABLES.titleDistrictsFilter} setActiveAreaFilter={setActiveAreaFilter} />
           <CheckboxFilter DATA={activeAreaFilter} selector="areaFilter" title={VARIABLES.titleAreaFilter} setActiveAreaFilter={setActiveAreaFilter} />
           <CheckboxFilter DATA={FILTER} selector="filter" title={VARIABLES.titleFilter} setActiveAreaFilter={setActiveAreaFilter} />
-          <CheckboxFilter DATA={MODS} selector="map-mod" title={VARIABLES.titleMapMode} setActiveAreaFilter={setActiveAreaFilter} />
+          <Mode DATA={MODS} selector="map-mod" title={VARIABLES.titleMapMode} />
           {/* Отправка формы фильтров */}
           <input
             className="aside__form__submit button_green"
