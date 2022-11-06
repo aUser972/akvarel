@@ -8,54 +8,10 @@ import { Mode } from "../Mode/Mode";
 export const Aside = () => {
   // Скелет для формирования отправки данных на бэк
   const dataStructure = {
-    "type": "object",
-    "description": "метод добавления нового типа объектов и новых объектов данного типа",
-    "properties": {
-      "districtsFilter": {
-        "description": [], //"Фильтр административных округов"
-        "type": "array",
-        "items": {
-          "description": "Массив GUID округов",
-          "type": "string"
-        }
-      },
-      "areaFilter": {
-        "description": [], // "Фильтр районов"
-        "type": "array",
-        "items": {
-          "description": "Массив GUID районов",
-          "type": "string"
-        }
-      },
-      "placeTypeFilter": {
-        "description": [], //"Фильтр типов объектов размещения"
-        "type": "array",
-        "items": {
-          "description": "Массив GUID типов объектов",
-          "type": "string"
-        }
-      },
-      "modelTypeFilter": {
-        "description": "Фильтр типа модели, содержащий ее guid",
-        "type": "string"
-      },
-      "minConsumerIndexFilter": {
-        "description": "Минимальный показатель востребованности",
-        "type": "number"
-      },
-      "maxConsumerIndexFilter": {
-        "description": "Максимальный показатель востребованности",
-        "type": "number"
-      },
-      "mosPostomatInclude": {
-        "description": "Исключение зон, охваченных уже расставленными постоматами Москвы",
-        "type": "boolean"
-      },
-      "placingPostomatCount": {
-        "description": "Количество размещаемых постоматов",
-        "type": "integer"
-      }
-    }
+    "AdministrativeDistricts": [],
+    "Area": [],
+    "objectType": [],
+    "calculationModel": ""
   }
   const [dataFilter, setDataFilter] = useState(dataStructure)
   const { setData } = useContext(Context)
@@ -567,29 +523,21 @@ export const Aside = () => {
     })
     return descriptionArray
   }
+  const getModeFilter = () => {
+    const inputs = document.querySelectorAll('.aside__map-mod__item_input')
+    let result = ''
+    inputs.forEach(input => {
+      if (input.checked) result = input.value
+    })
+    return result
+  }
   // Подготовка результатов фильтров
   const dataPrepair = (event) => {
     setDataFilter({
-      ...dataFilter,
-      properties: {
-        ...dataFilter.properties,
-        districtsFilter: {
-          ...dataFilter.properties.districtsFilter,
-          description: getResultFilter('.aside__districtsFilter__item_input')
-        },
-        areaFilter: {
-          ...dataFilter.properties.areaFilter,
-          description: getResultFilter('.aside__areaFilter__item_input')
-        },
-        placeTypeFilter: {
-          ...dataFilter.properties.placeTypeFilter,
-          description: getResultFilter('.aside__filter__item_input')
-        },
-        maxConsumerIndexFilter: {
-          ...dataFilter.properties.maxConsumerIndexFilter,
-          description: ''
-        }
-      }
+      "AdministrativeDistricts": getResultFilter('.aside__districtsFilter__item_input'),
+      "Area": getResultFilter('.aside__areaFilter__item_input'),
+      "objectType": getResultFilter('.aside__filter__item_input'),
+      "calculationModel": getModeFilter()
     })
   }
 

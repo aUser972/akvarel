@@ -3,14 +3,14 @@ import { Aside } from "./Components/Aside/Aside";
 import { Context } from "./Components/context";
 import { Maps } from "./Components/Maps/Maps";
 
-
+import POSTAMATS from './TmpData.json'
 
 function App() {
-  const [data, setData] = useState()
+  const [points, setPoints] = useState(POSTAMATS)
 
   return (
     <>
-      <Context.Provider value={{ data, setData }}>
+      <Context.Provider value={{ points, setPoints }}>
         {/* Компонент бокового меню */}
         <Aside />
         {/* Компонент карты */}

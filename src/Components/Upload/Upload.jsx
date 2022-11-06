@@ -1,7 +1,12 @@
-import html2canvas from "html2canvas"
 import jsPDF from "jspdf"
+import { useContext } from "react"
+import { Context } from "../context"
+import FileSaver from 'file-saver'
+import XLSX from 'sheetjs-style'
 
 export const Upload = ({ POINTS }) => {
+  const { points } = useContext(Context)
+  console.log(points)
   const BUTTONS = [
     {
       id: 1,
@@ -13,30 +18,32 @@ export const Upload = ({ POINTS }) => {
     }
   ]
 
-  const exportExcel = () => {
+  const exportExcel = async () => {
+    const fileType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8'
+    const fileExtension = '.xlsx'
 
+    const ws = XLSX.utils.json_to_sheet(points.Postamats)
+    const wb = { Sheets: { 'data': ws }, SheetNames: ['data'] }
+    const excelBuffer = XLSX.write(wb, { bookType: 'xlsx', type: 'array' })
+    const data = new Blob([excelBuffer], { type: fileType })
+    FileSaver.saveAs(data, 'postamats' + fileExtension)
   }
   const prepairURL = (data) => {
-    const points = data['PostamatPointes'].map(point =>
-      point.address.longitude + ',' + point.address.latitude + ',pm2grl'
+    const result = points.Postamats.map(point =>
+      point.longtitude + ',' + point.lattitude + ',pm2grl'
     ).join('~')
 
-    return `https://static-maps.yandex.ru/1.x/?l=map&pt=${points},pm2grl`
+    return `https://static-maps.yandex.ru/1.x/?size=650,450&l=map&pt=${result},pm2grl`
   }
 
   const exportPDF = () => {
-    const input = document.body
-    html2canvas(input)
-      .then((canvas) => {
-        const imgData = canvas.toDataURL('image/png');
-        const pdf = new jsPDF({
-          orientation: "landscape",
-          unit: "in",
-          format: [7, 6]
-        });
-        pdf.addImage(prepairURL(POINTS), 'JPEG', 0, 0);
-        pdf.save("download.pdf");
-      })
+    const pdf = new jsPDF({
+      orientation: "landscape",
+      unit: "in",
+      format: 'a4'
+    });
+    pdf.addImage(prepairURL(POINTS), 'JPEG', 0, 0, 12, 9);
+    pdf.save("postamats.pdf");
   }
   return (
     <div className="aside__form-upload">
