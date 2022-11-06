@@ -6,14 +6,17 @@ export const Slider = () => {
     {
       id: 1,
       title: 'мин.',
+      name: 'min',
       value: 0
     },
     {
       id: 2,
       title: 'макс.',
+      name: 'max',
       value: 1
     }
   ]
+
 
   return (
     <form className="aside__form-consumer">
@@ -28,11 +31,12 @@ export const Slider = () => {
               {consumer.title}
               <input
                 className="aside__form-consumer__inputs__input"
+                id={consumer.name}
                 type="number"
                 min='0'
                 max='1'
                 step='0.1'
-                placeholder='0'
+                placeholder={consumer.value}
               />
             </label>
           )

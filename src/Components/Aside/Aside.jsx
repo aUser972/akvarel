@@ -492,20 +492,26 @@ export const Aside = () => {
     })
     return result
   }
+
+  const getConsumers = (type) => {
+    const consumers = document.querySelectorAll('.aside__form-consumer__inputs__input')
+    return type === 'min' ? (consumers[0].value === '' ? '0' : consumers[0].value) : (consumers[1].value === '' ? '1' : consumers[1].value)
+  }
   // Подготовка результатов фильтров
   const dataPrepair = (event) => {
     setDataFilter({
       "AdministrativeDistricts": getResultFilter('.aside__districtsFilter__item_input'),
       "Area": getResultFilter('.aside__areaFilter__item_input'),
       "objectType": getResultFilter('.aside__filter__item_input'),
-      "calculationModel": getModeFilter()
+      "calculationModel": getModeFilter(),
+      "minConsumers": getConsumers('min'),
+      "maxConsumers": getConsumers('max')
     })
   }
 
   // Здесь надо произвести коннект с бэком и отправку dataFilter
   const handlerSubmit = (event) => {
     event.preventDefault()
-    console.log(dataFilter)
 
     fetch("http://127.0.0.1:8000", {
       method: "POST",
