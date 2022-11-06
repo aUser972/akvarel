@@ -14,7 +14,7 @@ export const Aside = () => {
     "calculationModel": ""
   }
   const [dataFilter, setDataFilter] = useState(dataStructure)
-  const { setData } = useContext(Context)
+  const { setPoints } = useContext(Context)
   const [activeAreaFilter, setActiveAreaFilter] = useState([{ id: 0, name: 'Выбрать все' }])
   // Данные фильтров
   const VARIABLES = {
@@ -526,7 +526,7 @@ export const Aside = () => {
         response.json()
       )
       .then(data =>
-        setData(data)
+        setPoints(data)
       );
   }
 

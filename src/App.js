@@ -3,10 +3,9 @@ import { Aside } from "./Components/Aside/Aside";
 import { Context } from "./Components/context";
 import { Maps } from "./Components/Maps/Maps";
 
-import POSTAMATS from './TmpData.json'
 
 function App() {
-  const [points, setPoints] = useState(POSTAMATS)
+  const [points, setPoints] = useState()
 
   return (
     <>
