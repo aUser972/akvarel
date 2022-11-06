@@ -4,9 +4,9 @@ import { Context } from "../context"
 import FileSaver from 'file-saver'
 import XLSX from 'sheetjs-style'
 
-export const Upload = ({ POINTS }) => {
+export const Upload = () => {
   const { points } = useContext(Context)
-  console.log(points)
+
   const BUTTONS = [
     {
       id: 1,
@@ -29,20 +29,22 @@ export const Upload = ({ POINTS }) => {
     FileSaver.saveAs(data, 'postamats' + fileExtension)
   }
   const prepairURL = (data) => {
-    const result = points.Postamats.map(point =>
-      point.longtitude + ',' + point.lattitude + ',pm2grl'
+    let zoom = ''
+    if (data.Postamats.length === 1) zoom = '&z=15&'
+    const result = data.Postamats.map(point =>
+      point.longtitude + ',' + point.lattitude + ',pmgrs' + point.id
     ).join('~')
-
-    return `https://static-maps.yandex.ru/1.x/?size=650,450&l=map&pt=${result},pm2grl`
+    console.log(result)
+    return `https://static-maps.yandex.ru/1.x/?${zoom}size=650,450&l=map&pt=${result}`
   }
 
-  const exportPDF = () => {
+  const exportPDF = (data) => {
     const pdf = new jsPDF({
       orientation: "landscape",
       unit: "in",
       format: 'a4'
     });
-    pdf.addImage(prepairURL(POINTS), 'JPEG', 0, 0, 12, 9);
+    pdf.addImage(prepairURL(data), 'JPEG', 0, 0, 12, 9);
     pdf.save("postamats.pdf");
   }
   return (
@@ -52,7 +54,7 @@ export const Upload = ({ POINTS }) => {
           <button
             className="aside__form-upload__btn button_green"
             key={btn.id}
-            onClick={() => { btn.id === 1 ? exportExcel() : exportPDF() }}
+            onClick={() => { btn.id === 1 ? exportExcel(points) : exportPDF(points) }}
           >
             {btn.name}
           </button>

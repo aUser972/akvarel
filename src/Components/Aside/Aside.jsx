@@ -465,45 +465,6 @@ export const Aside = () => {
     { id: 3, name: 'Учитывать объекты культуры' },
     { id: 4, name: 'Учитывать данные моб. операторов' }
   ]
-  const POINTS =
-  {
-    "PostamatPointes": [
-      {
-        "address":
-        {
-          "locationId": 80,
-          "latitude": 46.923039,
-          "longitude": 142.722976,
-          "postalCode": "693008",
-          "locality": "Южно-Сахалинск",
-          "street": "Железнодорожная",
-          "house": "170Б/1",
-          "housing": "2",
-          "building": "26",
-          "addressString": "693008, Южно-Сахалинск, Железнодорожная, д. 170Б/1, корп. 2, стр. 26",
-          "shortAddressString": "Железнодорожная, д. 170Б/1, корп. 2, стр. 26"
-        },
-        "coefficient": 0.1
-      },
-      {
-        "address":
-        {
-          "locationId": 81,
-          "latitude": 47.923039,
-          "longitude": 143.722976,
-          "postalCode": "693008",
-          "locality": "Южно-Сахалинск",
-          "street": "Железнодорожная",
-          "house": "170Б/1",
-          "housing": "2",
-          "building": "26",
-          "addressString": "693008, Южно-Сахалинск, Железнодорожная, д. 170Б/1, корп. 2, стр. 26",
-          "shortAddressString": "Железнодорожная, д. 170Б/1, корп. 2, стр. 26"
-        },
-        "coefficient": 0.2
-      }
-    ]
-  }
 
 
   // Скрытие/открытие бокового меню
@@ -589,7 +550,7 @@ export const Aside = () => {
         {/* Язычок */}
         <Slider />
         {/* Выгрузка */}
-        <Upload POINTS={POINTS} />
+        <Upload />
       </div>
       {/* Кнопка скрытия бокового меню */}
       <div

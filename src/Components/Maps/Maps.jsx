@@ -5,7 +5,6 @@ import { Context } from "../context"
 
 export const Maps = () => {
   const { points } = useContext(Context)
-
   return (
     <div className="map">
       <YMaps className="map__ymaps">
@@ -21,17 +20,15 @@ export const Maps = () => {
                   }}
                   properties={{
                     balloonContent: point.address,
-                    // hintContent: point.address,
-                    iconContent: point.id
+                    iconCaption: point.id
                   }}
                   options={{
-                    preset: 'islands#blackStretchyIcon',
+                    preset: 'islands#blackDotIconWithCaption',
                     hasHint: true,
                     iconCaptionMaxWidth: '50'
                   }}
                   modules={[
                     'geoObject.addon.balloon',
-                    'geoObject.addon.hint',
                   ]}
                 />
               )
