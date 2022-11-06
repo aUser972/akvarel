@@ -18,7 +18,7 @@ export const Aside = () => {
   const [activeAreaFilter, setActiveAreaFilter] = useState([{ id: 0, name: 'Выбрать все' }])
   // Данные фильтров
   const VARIABLES = {
-    title: 'Название нашего крутого сервиса',
+    title: 'MOSTOMAT FROM RBF',
     submitValue: 'Рассчитать',
     titleFilter: 'Фильтры',
     titleDistrictsFilter: 'Административные округа',
