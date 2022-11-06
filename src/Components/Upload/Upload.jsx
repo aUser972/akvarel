@@ -30,11 +30,11 @@ export const Upload = () => {
   }
   const prepairURL = (data) => {
     let zoom = ''
-    if (data.Postamats.length === 1) zoom = '&z=15&'
-    const result = data.Postamats.map(point =>
+    data = data.Postamats ? data.Postamats : data.Polygon
+    if (data.length === 1) zoom = '&z=15&'
+    const result = data.map(point =>
       point.longtitude + ',' + point.lattitude + ',pmgrs' + point.id
     ).join('~')
-    console.log(result)
     return `https://static-maps.yandex.ru/1.x/?${zoom}size=650,450&l=map&pt=${result}`
   }
 

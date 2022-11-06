@@ -538,8 +538,7 @@ export const Aside = () => {
         <form className="aside__form" onSubmit={handlerSubmit}>
           {/* Компоненты создания разделов фильтров
             Передаем: DATA - массив названий районов, административных округов, фильтров...,
-            selector - класс, title - заголовок фильтра, dataFilter - для сохранения данных при выборе значения фильтра,
-            setDataFilter - для изменения состояния данных при выборе значения фильтров
+            selector - класс, title - заголовок фильтра, dataFilter - для сохранения данных при выборе значения фильтра
         */}
           <CheckboxFilter DATA={DISTRICS_FILTER} selector="districtsFilter" title={VARIABLES.titleDistrictsFilter} setActiveAreaFilter={setActiveAreaFilter} />
           <CheckboxFilter DATA={activeAreaFilter} selector="areaFilter" title={VARIABLES.titleAreaFilter} setActiveAreaFilter={setActiveAreaFilter} />
