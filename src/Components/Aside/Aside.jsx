@@ -427,25 +427,6 @@ export const Aside = () => {
       id: 121,
       name: 'Южнопортовый'
     }]
-  }, {
-    id: 10,
-    name: 'Зеленоградский',
-    area: [{
-      id: 122,
-      name: 'Крюково'
-    }, {
-      id: 123,
-      name: 'Матушкино'
-    }, {
-      id: 124,
-      name: 'Савёлки'
-    }, {
-      id: 125,
-      name: 'Силино'
-    }, {
-      id: 126,
-      name: 'Старое Крюково'
-    }]
   }]
   const MODS = [
     {
@@ -513,12 +494,10 @@ export const Aside = () => {
   const handlerSubmit = (event) => {
     event.preventDefault()
 
-    fetch("http://127.0.0.1:8000", {
+    fetch("http://46.173.219.98:8001", {
       method: "POST",
       headers: {
-        'Accept': 'application/json',
         'Content-Type': ' application/json',
-        'X-API-SERVER': '85499f9f'
       },
       body: JSON.stringify(dataFilter)
     })
