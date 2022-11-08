@@ -39,13 +39,17 @@ export const Upload = () => {
   }
 
   const exportPDF = (data) => {
-    const pdf = new jsPDF({
-      orientation: "landscape",
-      unit: "in",
-      format: 'a4'
-    });
-    pdf.addImage(prepairURL(data), 'JPEG', 0, 0, 12, 9);
-    pdf.save("postamats.pdf");
+    document.querySelector('.aside__close').click()
+    window.print()
+    if (data === '') {
+      const pdf = new jsPDF({
+        orientation: "landscape",
+        unit: "in",
+        format: 'a4'
+      });
+      pdf.addImage(prepairURL(data), 'JPEG', 0, 0, 12, 9);
+      pdf.save("postamats.pdf");
+    }
   }
   return (
     <div className="aside__form-upload">
