@@ -51,7 +51,7 @@ export const Maps = () => {
                   ) :
                   points.Polygon.map(point =>
                     <Circle
-                      geometry={[[point.lattitude, point.longtitude], 100]}
+                      geometry={[[point.lattitude, point.longtitude], 1000]}
                       options={{
                         fillColor: getColor(point.coefficient),
                         fillOpacity: 0.6,
