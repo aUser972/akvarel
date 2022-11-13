@@ -20,7 +20,7 @@ export const Aside = () => {
   const VARIABLES = {
     title: 'MOSTOMAT FROM RBF',
     submitValue: 'Рассчитать',
-    titleFilter: 'Фильтры',
+    titleFilter: 'Объекты для размещения',
     titleDistrictsFilter: 'Административные округа',
     titleAreaFilter: 'Районы',
     titleMapMode: 'Режим отображения'
@@ -441,10 +441,12 @@ export const Aside = () => {
     }
   ]
   const FILTER = [
-    { id: 1, name: 'Размещать в киосках' },
-    { id: 2, name: 'Размещать в спортивных сооружениях' },
-    { id: 3, name: 'Размещать в объектах культуры' },
-    { id: 4, name: 'Размещать в жилых домах' }
+    { id: 1, name: 'МФЦ' },
+    { id: 2, name: 'Спортивный объект' },
+    { id: 3, name: 'Библиотека' },
+    { id: 4, name: 'Жилой дом' },
+    { id: 5, name: 'Киоск' },
+    { id: 6, name: 'Объект культуры' }
   ]
 
 
