@@ -1,5 +1,11 @@
-export const Mode = ({ DATA, selector, title }) => {
+import { useState } from "react"
 
+import gradientImg from '../../../img/gradient.png'
+
+export const Mode = ({ DATA, selector, title }) => {
+  const [gradient, setGradient] = useState(false)
+  // const termalMap = 
+  // console.log(termalMap)
   return (
     <div className={`aside__${selector}`}>
       {/* Заголовок раздела фильтра */}
@@ -24,11 +30,29 @@ export const Mode = ({ DATA, selector, title }) => {
                   type="radio"
                   name={selector}
                   value={item.value}
+                  onChange={(event) => event.target.value === 'Model2' ? setGradient(true) : setGradient(false)}
                 />
                 {item.name}
               </label>
             </div>
           )
+
+        }
+        {
+          gradient &&
+          <div
+            className={`aside__${selector}__gradient`}
+          >
+            <div
+              className={`aside__${selector}__gradient_img`}
+            >
+              <img src={gradientImg} alt="gradientImage" />
+            </div>
+            <div className={`aside__${selector}__gradient_value`}>
+              <span>0</span>
+              <span>1</span>
+            </div>
+          </div>
         }
       </div>
     </div>

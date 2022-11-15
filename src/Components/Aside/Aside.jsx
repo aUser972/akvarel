@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { CheckboxFilter } from "./CheckboxFilter/CheckboxFilter";
-import { Slider } from "./Slider/Slider";
+import { Consumer } from "./Consumer/Consumer";
 import { Upload } from "./Upload/Upload";
 import { Context } from "../context";
 import { Mode } from "./Mode/Mode";
@@ -535,6 +535,8 @@ export const Aside = () => {
           <CheckboxFilter DATA={FILTER} selector="filter" title={VARIABLES.titleFilter} setActiveAreaFilter={setActiveAreaFilter} />
           <Mode DATA={MODS} selector="map-mod" title={VARIABLES.titleMapMode} />
           {/* Отправка формы фильтров */}
+          {/* Consumer */}
+          <Consumer />
           <input
             className="aside__form__submit button_green"
             type="submit"
@@ -542,8 +544,6 @@ export const Aside = () => {
             onClick={dataPrepair}
           />
         </form>
-        {/* Язычок */}
-        <Slider />
         {/* Выгрузка */}
         <Upload />
       </div>
