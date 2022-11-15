@@ -1,9 +1,10 @@
 import { useContext, useState } from "react";
-import { CheckboxFilter } from "../CheckboxFilter/CheckboxFilter";
-import { Slider } from "../Slider/Slider";
-import { Upload } from "../Upload/Upload";
+import { CheckboxFilter } from "./CheckboxFilter/CheckboxFilter";
+import { Slider } from "./Slider/Slider";
+import { Upload } from "./Upload/Upload";
 import { Context } from "../context";
-import { Mode } from "../Mode/Mode";
+import { Mode } from "./Mode/Mode";
+import { NumberPostamats } from "./NumberPostamats/NumberPostamats";
 
 export const Aside = () => {
   // Скелет для формирования отправки данных на бэк
@@ -20,6 +21,7 @@ export const Aside = () => {
   const VARIABLES = {
     title: 'MOSTOMAT FROM RBF',
     submitValue: 'Рассчитать',
+    titleNumberPosts: 'Количество постаматов',
     titleFilter: 'Объекты для размещения',
     titleDistrictsFilter: 'Административные округа',
     titleAreaFilter: 'Районы',
@@ -480,6 +482,11 @@ export const Aside = () => {
     const consumers = document.querySelectorAll('.aside__form-consumer__inputs__input')
     return type === 'min' ? (consumers[0].value === '' ? '0' : consumers[0].value) : (consumers[1].value === '' ? '1' : consumers[1].value)
   }
+
+  const getNumberPosts = () => {
+    const numberPosts = document.querySelector('.aside__number-posts__input')
+    return numberPosts.value
+  }
   // Подготовка результатов фильтров
   const dataPrepair = (event) => {
     setDataFilter({
@@ -488,7 +495,8 @@ export const Aside = () => {
       "objectType": getResultFilter('.aside__filter__item_input'),
       "calculationModel": getModeFilter(),
       "minConsumers": getConsumers('min'),
-      "maxConsumers": getConsumers('max')
+      "maxConsumers": getConsumers('max'),
+      "numberPosts": getNumberPosts()
     })
   }
 
@@ -523,6 +531,7 @@ export const Aside = () => {
         */}
           <CheckboxFilter DATA={DISTRICS_FILTER} selector="districtsFilter" title={VARIABLES.titleDistrictsFilter} setActiveAreaFilter={setActiveAreaFilter} />
           <CheckboxFilter DATA={activeAreaFilter} selector="areaFilter" title={VARIABLES.titleAreaFilter} setActiveAreaFilter={setActiveAreaFilter} />
+          <NumberPostamats title={VARIABLES.titleNumberPosts} />
           <CheckboxFilter DATA={FILTER} selector="filter" title={VARIABLES.titleFilter} setActiveAreaFilter={setActiveAreaFilter} />
           <Mode DATA={MODS} selector="map-mod" title={VARIABLES.titleMapMode} />
           {/* Отправка формы фильтров */}

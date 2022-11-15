@@ -234,7 +234,8 @@ code {
   &__areaFilter,
   &__districtsFilter,
   &__map-mod,
-  &__filter {
+  &__filter,
+  &__number-posts {
     margin-top: 15px;
 
     &__inner {
@@ -260,7 +261,8 @@ code {
   }
 
   &__filter,
-  &__form-consumer {
+  &__form-consumer,
+  &__number-posts {
     &__title {
       font-size: 18px;
       margin-top: 15px;

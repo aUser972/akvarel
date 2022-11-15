@@ -1,6 +1,6 @@
 import jsPDF from "jspdf"
 import { useContext } from "react"
-import { Context } from "../context"
+import { Context } from "../../context"
 import FileSaver from 'file-saver'
 import XLSX from 'sheetjs-style'
 
