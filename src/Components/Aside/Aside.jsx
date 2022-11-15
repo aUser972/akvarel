@@ -2,9 +2,10 @@ import { useContext, useState } from "react";
 import { CheckboxFilter } from "./CheckboxFilter/CheckboxFilter";
 import { Consumer } from "./Consumer/Consumer";
 import { Upload } from "./Upload/Upload";
-import { Context } from "../context";
+import { PointsContext } from "../PointsContext";
 import { Mode } from "./Mode/Mode";
 import { NumberPostamats } from "./NumberPostamats/NumberPostamats";
+import { SelectRadius } from "./SelectRadius/SelectRadius";
 
 export const Aside = () => {
   // Скелет для формирования отправки данных на бэк
@@ -15,7 +16,7 @@ export const Aside = () => {
     "calculationModel": ""
   }
   const [dataFilter, setDataFilter] = useState(dataStructure)
-  const { setPoints } = useContext(Context)
+  const { setPoints } = useContext(PointsContext)
   const [activeAreaFilter, setActiveAreaFilter] = useState([{ id: 0, name: 'Выбрать все' }])
   // Данные фильтров
   const VARIABLES = {
@@ -488,7 +489,7 @@ export const Aside = () => {
     return numberPosts.value
   }
   // Подготовка результатов фильтров
-  const dataPrepair = (event) => {
+  const dataPrepair = () => {
     setDataFilter({
       "AdministrativeDistricts": getResultFilter('.aside__districtsFilter__item_input'),
       "Area": getResultFilter('.aside__areaFilter__item_input'),
@@ -537,6 +538,7 @@ export const Aside = () => {
           {/* Отправка формы фильтров */}
           {/* Consumer */}
           <Consumer />
+          <SelectRadius />
           <input
             className="aside__form__submit button_green"
             type="submit"

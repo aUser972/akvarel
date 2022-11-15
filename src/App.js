@@ -1,20 +1,24 @@
 import { useState } from "react";
 import { Aside } from "./Components/Aside/Aside";
-import { Context } from "./Components/context";
+import { PointsContext } from "./Components/PointsContext";
 import { Maps } from "./Components/Maps/Maps";
+import { CustomCircle } from "./Components/CustomCircleContext";
 
 
 function App() {
-  const [points, setPoints] = useState()
+  const [points, setPoints] = useState(null)
+  const [customCircle, setCustomCircle] = useState(null)
 
   return (
     <>
-      <Context.Provider value={{ points, setPoints }}>
-        {/* Компонент бокового меню */}
-        <Aside />
-        {/* Компонент карты */}
-        <Maps />
-      </Context.Provider>
+      <CustomCircle.Provider value={{ customCircle, setCustomCircle }} >
+        <PointsContext.Provider value={{ points, setPoints }}>
+          {/* Компонент бокового меню */}
+          <Aside />
+          {/* Компонент карты */}
+          <Maps />
+        </PointsContext.Provider>
+      </CustomCircle.Provider>
     </>
   );
 }

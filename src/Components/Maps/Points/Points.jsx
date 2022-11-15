@@ -1,9 +1,9 @@
 import { GeoObject, Circle } from '@pbe/react-yandex-maps'
 import { useContext } from "react"
-import { Context } from "../../context"
+import { PointsContext } from "../../PointsContext"
 
 export const Points = () => {
-  const { points } = useContext(Context)
+  const { points } = useContext(PointsContext)
 
   const COLOR = {
     red: '#f44336',

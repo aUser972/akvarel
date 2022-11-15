@@ -1,11 +1,11 @@
 import jsPDF from "jspdf"
 import { useContext } from "react"
-import { Context } from "../../context"
+import { PointsContext } from "../../PointsContext"
 import FileSaver from 'file-saver'
 import XLSX from 'sheetjs-style'
 
 export const Upload = () => {
-  const { points } = useContext(Context)
+  const { points } = useContext(PointsContext)
 
   const BUTTONS = [
     {
