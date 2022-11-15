@@ -1,6 +1,7 @@
 import { YMaps, Map, GeoObject, Circle } from "@pbe/react-yandex-maps"
 import { useContext } from "react"
 import { Context } from "../context"
+import { Points } from "./Points/Points"
 
 
 export const Maps = () => {
@@ -25,43 +26,7 @@ export const Maps = () => {
       <YMaps className="map__ymaps">
         <div >
           <Map width='100%' height='100%' defaultState={{ center: [55.75, 37.57], zoom: 10 }} >
-            {
-              points ?
-                points.Postamats ?
-                  points.Postamats.map(point =>
-                    <GeoObject
-                      key={point.id}
-                      geometry={{
-                        type: 'Point',
-                        coordinates: [point.lattitude, point.longtitude],
-                      }}
-                      properties={{
-                        balloonContent: point.address,
-                        iconCaption: point.id
-                      }}
-                      options={{
-                        preset: 'islands#blackDotIconWithCaption',
-                        hasHint: true,
-                        iconCaptionMaxWidth: '50'
-                      }}
-                      modules={[
-                        'geoObject.addon.balloon',
-                      ]}
-                    />
-                  ) :
-                  points.Polygon.map(point =>
-                    <Circle
-                      geometry={[[point.lattitude, point.longtitude], 1000]}
-                      options={{
-                        fillColor: getColor(point.coefficient),
-                        fillOpacity: 0.6,
-                        strokeWidth: 0,
-                      }}
-                    />
-                  )
-                : <></>
-            }
-
+            <Points />
           </Map>
         </div>
       </YMaps>

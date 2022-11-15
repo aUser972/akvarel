@@ -1,4 +1,4 @@
-export const Slider = () => {
+export const Consumer = () => {
   const VARIABLES = {
     title: "Пороговые значения"
   }
@@ -19,7 +19,7 @@ export const Slider = () => {
 
 
   return (
-    <form className="aside__form-consumer">
+    <div className="aside__form-consumer">
       <h2 className="aside__form-consumer__title">{VARIABLES.title}</h2>
       <div className="aside__form-consumer__inputs">
         {
@@ -42,6 +42,6 @@ export const Slider = () => {
           )
         }
       </div>
-    </form>
+    </div>
   )
 }
