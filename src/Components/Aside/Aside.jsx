@@ -496,7 +496,7 @@ export const Aside = () => {
   const handlerSubmit = (event) => {
     event.preventDefault()
 
-    fetch("http://46.173.219.98:8001", {
+    fetch("http://46.173.219.98:8001/district", {
       method: "POST",
       headers: {
         'Content-Type': ' application/json',
