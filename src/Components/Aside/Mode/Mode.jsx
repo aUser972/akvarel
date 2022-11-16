@@ -1,9 +1,10 @@
-import { useState } from "react"
+import { useContext } from "react"
 
 import gradientImg from '../../../img/gradient.png'
+import { PointsContext } from "../../PointsContext"
 
 export const Mode = ({ DATA, selector, title }) => {
-  const [gradient, setGradient] = useState(false)
+  const { points, setPoints } = useContext(PointsContext)
   // const termalMap = 
   // console.log(termalMap)
   return (
@@ -30,7 +31,10 @@ export const Mode = ({ DATA, selector, title }) => {
                   type="radio"
                   name={selector}
                   value={item.value}
-                  onChange={(event) => event.target.value === 'Model2' ? setGradient(true) : setGradient(false)}
+                  checked={item.value === points.mode}
+                  onChange={(event) => event.target.value === 'Model2' ?
+                    setPoints({ ...points, mode: 'Model2' })
+                    : setPoints({ ...points, mode: 'Model1' })}
                 />
                 {item.name}
               </label>
@@ -39,7 +43,7 @@ export const Mode = ({ DATA, selector, title }) => {
 
         }
         {
-          gradient &&
+          points.mode === 'Model2' &&
           <div
             className={`aside__${selector}__gradient`}
           >
