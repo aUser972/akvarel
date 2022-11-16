@@ -133,6 +133,18 @@ code {
   height: 100%;
 }
 
+.button_green {
+  border: none;
+  border-radius: 7px;
+  padding: 10px;
+  margin: 10px auto;
+  background-color: rgb(18, 142, 22);
+  color: white;
+  transition: transform linear .3s;
+  cursor: pointer;
+
+}
+
 .aside {
   position: absolute;
   z-index: 1;
@@ -221,6 +233,8 @@ code {
       top: 0px;
       transform: rotateZ(45deg);
     }
+
+
   }
 
   &__btn {
@@ -237,6 +251,7 @@ code {
   &__filter,
   &__number-posts {
     margin-top: 15px;
+    border-bottom: 1px solid #ccc;
 
     &__inner {
       margin-top: 10px;
@@ -262,7 +277,9 @@ code {
 
   &__filter,
   &__form-consumer,
-  &__number-posts {
+  &__number-posts,
+  &__select-radius {
+
     &__title {
       font-size: 18px;
       margin-top: 15px;
@@ -291,22 +308,55 @@ code {
   &__form-upload {
     margin-top: 20px;
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    gap: 10px;
+
+    &__btn {
+      width: 45%;
+    }
+  }
+
+  &__select-radius {
+    border-bottom: 1px solid #ccc;
+
+    &__select {
+      margin-top: 10px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      &_input {
+
+        height: 25px;
+        font-size: 16px;
+      }
+
+      &_btn {
+        margin: 10px 0;
+      }
+
+      &_input,
+      &_btn {
+        width: 45%;
+      }
+
+    }
+
+    &__select label {
+      display: block;
+    }
+  }
+
+  &__form {
+    &__submit {
+      width: 100%;
+      font-size: 20px;
+    }
   }
 }
 
-.button_green {
-  border: none;
-  border-radius: 7px;
-  padding: 10px;
-  margin: 10px auto;
-  background-color: rgb(18, 142, 22);
-  color: white;
-  transition: transform linear .3s;
-  cursor: pointer;
 
-}
 
 input[type='submit'] {
   font-weight: 600;
@@ -328,7 +378,6 @@ input[type='submit'] {
   margin-top: 0;
   margin-bottom: 15px;
   padding-bottom: 15px;
-  border-bottom: 1px solid #ccc;
 }
 
 .aside__form>div:last-child {
@@ -407,6 +456,7 @@ input[type='submit'] {
 
 .aside__form-consumer {
   margin-bottom: 30px;
+  border-bottom: 1px solid #ccc;
 }
 
 .aside__form-consumer__inputs label:not(:last-child) {
@@ -425,12 +475,12 @@ input[type='submit'] {
   border-radius: 3px;
 }
 
-.aside__form-upload {
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  justify-content: flex-start;
-}
+// .aside__form-upload {
+//   flex-direction: row;
+//   flex-wrap: wrap;
+//   align-items: flex-start;
+//   justify-content: flex-start;
+// }
 
 .aside__form-upload button {
   margin: 0;
