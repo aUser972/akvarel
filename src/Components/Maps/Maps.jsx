@@ -1,4 +1,4 @@
-import { YMaps, Map, Circle } from "@pbe/react-yandex-maps"
+import { YMaps, Map, ZoomControl, Circle } from "@pbe/react-yandex-maps"
 import { useContext, useState } from "react"
 import { CustomCircle } from "../CustomCircleContext"
 import { Points } from "./Points/Points"
@@ -36,6 +36,7 @@ export const Maps = () => {
             defaultState={{ center: [55.75, 37.57], zoom: 10 }}
             onClick={(event) => customCircle && handlerClick(event)}
           >
+            <ZoomControl options={{ float: "left", position: {right: 10, top: 100} }} />
             {
               customCircle && myCircle
             }
