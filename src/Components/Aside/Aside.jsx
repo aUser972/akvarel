@@ -502,6 +502,8 @@ export const Aside = () => {
         numberPosts: getNumberPosts(),
       })
 
+
+
     } else {
       setDataFilter({
         "AdministrativeDistricts": getResultFilter('.aside__districtsFilter__item_input'),
@@ -520,7 +522,6 @@ export const Aside = () => {
     event.preventDefault()
     const URL = customCircle ? '/circle' : '/district'
     customCircle && setCustomCircle(null)
-    console.log('MODE: ', points.mode)
 
     fetch(`http://46.173.219.98:8001${URL}`, {
       method: "POST",
