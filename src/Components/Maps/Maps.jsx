@@ -5,15 +5,21 @@ import { Points } from "./Points/Points"
 
 
 export const Maps = () => {
-  const { customCircle } = useContext(CustomCircle)
+  const { customCircle, setCustomCircle } = useContext(CustomCircle)
   const [myCircle, setMyCircle] = useState(null)
 
   const handlerClick = (map) => {
     const coordinates = map.get('coords')
+
+    setCustomCircle({
+      ...customCircle,
+      Longtitude: coordinates[1],
+      Lattitude: coordinates[0]
+    })
     setMyCircle(<Circle
       geometry={[
         coordinates,
-        customCircle.data.Radius
+        customCircle.Radius
       ]}
       options={{
         fillColor: "#DB709377",

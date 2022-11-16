@@ -15,16 +15,13 @@ export const SelectRadius = () => {
   const handlerSelectRadius = (event) => {
     event.preventDefault()
     setCustomCircle({
-      data: {
-        objectType: '',
-        maxConsumers: '',
-        minConsumers: '',
-        Longtitude: '',
-        Lattitude: '',
-        Radius: getRadius(),
-        numberPosts: '',
-      },
-      checked: true
+      objectType: '',
+      maxConsumers: '',
+      minConsumers: '',
+      Longtitude: '',
+      Lattitude: '',
+      Radius: getRadius(),
+      numberPosts: '',
     })
   }
 

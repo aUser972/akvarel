@@ -6,6 +6,7 @@ import { PointsContext } from "../PointsContext";
 import { Mode } from "./Mode/Mode";
 import { NumberPostamats } from "./NumberPostamats/NumberPostamats";
 import { SelectRadius } from "./SelectRadius/SelectRadius";
+import { CustomCircle } from "../CustomCircleContext";
 
 export const Aside = () => {
   // Скелет для формирования отправки данных на бэк
@@ -18,6 +19,7 @@ export const Aside = () => {
   const [dataFilter, setDataFilter] = useState(dataStructure)
   const { setPoints } = useContext(PointsContext)
   const [activeAreaFilter, setActiveAreaFilter] = useState([{ id: 0, name: 'Выбрать все' }])
+  const { customCircle, setCustomCircle } = useContext(CustomCircle)
   // Данные фильтров
   const VARIABLES = {
     title: 'MOSTOMAT FROM RBF',
@@ -490,21 +492,34 @@ export const Aside = () => {
   }
   // Подготовка результатов фильтров
   const dataPrepair = () => {
-    setDataFilter({
-      "AdministrativeDistricts": getResultFilter('.aside__districtsFilter__item_input'),
-      "Area": getResultFilter('.aside__areaFilter__item_input'),
-      "objectType": getResultFilter('.aside__filter__item_input'),
-      "calculationModel": getModeFilter(),
-      "minConsumers": getConsumers('min'),
-      "maxConsumers": getConsumers('max'),
-      "numberPosts": getNumberPosts()
-    })
+    if (customCircle) {
+
+      setDataFilter({
+        ...customCircle,
+        objectType: getResultFilter('.aside__filter__item_input'),
+        maxConsumers: getConsumers('max'),
+        minConsumers: getConsumers('min'),
+        numberPosts: getNumberPosts(),
+      })
+
+      setCustomCircle(null)
+    } else {
+      setDataFilter({
+        "AdministrativeDistricts": getResultFilter('.aside__districtsFilter__item_input'),
+        "Area": getResultFilter('.aside__areaFilter__item_input'),
+        "objectType": getResultFilter('.aside__filter__item_input'),
+        "calculationModel": getModeFilter(),
+        "minConsumers": getConsumers('min'),
+        "maxConsumers": getConsumers('max'),
+        "numberPosts": getNumberPosts()
+      })
+    }
   }
 
   // Здесь надо произвести коннект с бэком и отправку dataFilter
   const handlerSubmit = (event) => {
     event.preventDefault()
-
+    console.log(dataFilter)
     fetch("http://46.173.219.98:8001/district", {
       method: "POST",
       headers: {
