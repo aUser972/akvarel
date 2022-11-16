@@ -20,8 +20,8 @@ export const Points = () => {
   }
 
   return (
-    points ?
-      points.Postamats ?
+    points.Postamats ?
+      points.mode === 'Model1' ?
         points.Postamats.map(point =>
           <GeoObject
             key={point.id}
@@ -43,7 +43,7 @@ export const Points = () => {
             ]}
           />
         ) :
-        points.Polygon.map(point =>
+        points.Postamats.map(point =>
           <Circle
             geometry={[[point.lattitude, point.longtitude], 1000]}
             options={{

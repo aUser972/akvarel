@@ -17,7 +17,7 @@ export const Aside = () => {
     "calculationModel": ""
   }
   const [dataFilter, setDataFilter] = useState(dataStructure)
-  const { setPoints } = useContext(PointsContext)
+  const { points, setPoints } = useContext(PointsContext)
   const [activeAreaFilter, setActiveAreaFilter] = useState([{ id: 0, name: 'Выбрать все' }])
   const { customCircle, setCustomCircle } = useContext(CustomCircle)
   // Данные фильтров
@@ -502,7 +502,8 @@ export const Aside = () => {
         numberPosts: getNumberPosts(),
       })
 
-      
+
+
     } else {
       setDataFilter({
         "AdministrativeDistricts": getResultFilter('.aside__districtsFilter__item_input'),
@@ -519,37 +520,25 @@ export const Aside = () => {
   // Здесь надо произвести коннект с бэком и отправку dataFilter
   const handlerSubmit = (event) => {
     event.preventDefault()
-    console.log(dataFilter)
-    if (customCircle) {   
-      setCustomCircle(null)   
-      fetch("http://46.173.219.98:8001/circle", {
-        method: "POST",
-        headers: {
-          'Content-Type': ' application/json',
-        },
-        body: JSON.stringify(dataFilter)
-      })
-        .then(response =>
-          response.json()
-        )
-        .then(data =>
-          setPoints(data)
-        );
-    } else {
-      fetch("http://46.173.219.98:8001/district", {
-        method: "POST",
-        headers: {
-          'Content-Type': ' application/json',
-        },
-        body: JSON.stringify(dataFilter)
-      })
-        .then(response =>
-          response.json()
-        )
-        .then(data =>
-          setPoints(data)
-        );
-      }
+    const URL = customCircle ? '/circle' : '/district'
+    customCircle && setCustomCircle(null)
+
+    fetch(`http://46.173.219.98:8001${URL}`, {
+      method: "POST",
+      headers: {
+        'Content-Type': ' application/json',
+      },
+      body: JSON.stringify(dataFilter)
+    })
+      .then(response =>
+        response.json()
+      )
+      .then(data =>
+        setPoints({
+          ...points,
+          Postamats: data
+        })
+      );
   }
 
   return (
@@ -564,13 +553,12 @@ export const Aside = () => {
         */}
           <CheckboxFilter DATA={DISTRICS_FILTER} selector="districtsFilter" title={VARIABLES.titleDistrictsFilter} setActiveAreaFilter={setActiveAreaFilter} />
           <CheckboxFilter DATA={activeAreaFilter} selector="areaFilter" title={VARIABLES.titleAreaFilter} setActiveAreaFilter={setActiveAreaFilter} />
-          <NumberPostamats title={VARIABLES.titleNumberPosts} />
+          <SelectRadius />
           <CheckboxFilter DATA={FILTER} selector="filter" title={VARIABLES.titleFilter} setActiveAreaFilter={setActiveAreaFilter} />
+          <NumberPostamats title={VARIABLES.titleNumberPosts} />
+          <Consumer />
           <Mode DATA={MODS} selector="map-mod" title={VARIABLES.titleMapMode} />
           {/* Отправка формы фильтров */}
-          {/* Consumer */}
-          <Consumer />
-          <SelectRadius />
           <input
             className="aside__form__submit button_green"
             type="submit"
