@@ -502,7 +502,7 @@ export const Aside = () => {
         numberPosts: getNumberPosts(),
       })
 
-      setCustomCircle(null)
+      
     } else {
       setDataFilter({
         "AdministrativeDistricts": getResultFilter('.aside__districtsFilter__item_input'),
@@ -520,19 +520,36 @@ export const Aside = () => {
   const handlerSubmit = (event) => {
     event.preventDefault()
     console.log(dataFilter)
-    fetch("http://46.173.219.98:8001/district", {
-      method: "POST",
-      headers: {
-        'Content-Type': ' application/json',
-      },
-      body: JSON.stringify(dataFilter)
-    })
-      .then(response =>
-        response.json()
-      )
-      .then(data =>
-        setPoints(data)
-      );
+    if (customCircle) {   
+      setCustomCircle(null)   
+      fetch("http://46.173.219.98:8001/circle", {
+        method: "POST",
+        headers: {
+          'Content-Type': ' application/json',
+        },
+        body: JSON.stringify(dataFilter)
+      })
+        .then(response =>
+          response.json()
+        )
+        .then(data =>
+          setPoints(data)
+        );
+    } else {
+      fetch("http://46.173.219.98:8001/district", {
+        method: "POST",
+        headers: {
+          'Content-Type': ' application/json',
+        },
+        body: JSON.stringify(dataFilter)
+      })
+        .then(response =>
+          response.json()
+        )
+        .then(data =>
+          setPoints(data)
+        );
+      }
   }
 
   return (
