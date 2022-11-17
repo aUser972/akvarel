@@ -523,7 +523,7 @@ export const Aside = () => {
     const URL = customCircle ? '/circle' : '/district'
     customCircle && setCustomCircle(null)
 
-    fetch(`http://127.0.0.1:8000${URL}`, {
+    fetch(`http://46.173.219.98:8001${URL}`, {
       method: "POST",
       headers: {
         'Content-Type': ' application/json',
