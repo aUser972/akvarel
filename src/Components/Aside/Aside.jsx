@@ -488,7 +488,7 @@ export const Aside = () => {
 
   const getNumberPosts = () => {
     const numberPosts = document.querySelector('.aside__number-posts__input')
-    return numberPosts.value
+    return numberPosts.value ? numberPosts.value : '0'
   }
   // Подготовка результатов фильтров
   const dataPrepair = () => {
@@ -523,7 +523,7 @@ export const Aside = () => {
     const URL = customCircle ? '/circle' : '/district'
     customCircle && setCustomCircle(null)
 
-    fetch(`http://46.173.219.98:8001${URL}`, {
+    fetch(`http://127.0.0.1:8000${URL}`, {
       method: "POST",
       headers: {
         'Content-Type': ' application/json',
