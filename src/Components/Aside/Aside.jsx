@@ -92,7 +92,6 @@ export const Aside = () => {
   // Подготовка результатов фильтров
   const dataPrepair = () => {
     if (customCircle) {
-
       setDataFilter({
         ...customCircle,
         objectType: getResultFilter('.aside__filter__item_input'),
@@ -100,9 +99,6 @@ export const Aside = () => {
         minConsumers: getConsumers('min'),
         numberPosts: getNumberPosts(),
       })
-
-
-
     } else {
       setDataFilter({
         "AdministrativeDistricts": getResultFilter('.aside__districtsFilter__item_input'),
@@ -135,7 +131,7 @@ export const Aside = () => {
       .then(data =>
         setPoints({
           ...points,
-          Postamats: data
+          data
         })
       );
   }

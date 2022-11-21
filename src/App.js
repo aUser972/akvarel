@@ -7,8 +7,7 @@ import { CustomCircle } from "./Components/CustomCircleContext";
 
 function App() {
   const [points, setPoints] = useState({
-    mode: 'Model1',
-    Postamats: null
+    mode: 'Model1'
   })
   const [customCircle, setCustomCircle] = useState(null)
 
